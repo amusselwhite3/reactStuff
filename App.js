@@ -12,7 +12,7 @@ import {
   View,
   TextInput
 } from 'react-native';
-import LoginForm from './components/loginForm';
+import LoginForm from './pages/loginForm';
 
 
 export default class App extends Component {

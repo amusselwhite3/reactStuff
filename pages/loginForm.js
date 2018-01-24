@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Alert, AppRegistry, Button, View, Text, TextInput, StyleSheet } from 'react-native';
+import Container from './../components/Container'
 
 export default class LoginForm extends Component {
 
@@ -9,12 +10,12 @@ export default class LoginForm extends Component {
   render() {
       return (
         <View>
-          <View style={styles.container}>
+          <Container>
             <TextInput style = {styles.input}
                       placeholder="Email" />
             <TextInput style = {styles.input}
                         placeholder = "Password" />
-          </View> 
+          </Container>
           <View style={styles.buttonContainer}>
               <Button
                 onPress={this.onPress}
