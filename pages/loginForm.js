@@ -9,9 +9,7 @@ export default class LoginForm extends Component {
 		this.state = {aThing:true};
 		this.onValueChange = this.onValueChange.bind(this);
 	}
-	onPress() {
-    	Alert.alert("BUTTON HIT");
-	  }
+
 	  
 	forgotPress() {
 		Alert.alert("FORGOT PASS")
@@ -23,6 +21,7 @@ export default class LoginForm extends Component {
 		});
 	}
   	render() {
+		const { navigate } = this.props.navigation;
     	return (
         	<View>
 				<Image source={require('./../diamond.jpg')} style={styles.mainIcon} />
@@ -34,12 +33,13 @@ export default class LoginForm extends Component {
 					</View>
 					<View style={styles.buttonContainer}>
 						<Button
-							onPress={this.onPress}
+							onPress={() => navigate('ProfileScreen')}
 							text = "->"
 						/>
 					</View>
 				</Container>
 				<View style={styles.toggleContainer}>
+					<Text> Remember Me </Text>
 					<Switch
 						value = {this.state.aThing}
 						onValueChange = {this.onValueChange}
@@ -81,6 +81,13 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		backgroundColor: '#00C01E',
 		flex:1
+	},
+	toggleContainer: {
+		margin: 20,
+		flexDirection: 'column',
+		alignSelf: 'center',
+		flexDirection: 'row', 
+
 	},
 	forgotContainer: {
 		margin:20,

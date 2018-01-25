@@ -13,12 +13,23 @@ import {
   TextInput
 } from 'react-native';
 import LoginForm from './pages/loginForm';
+import ProfileScreen from './pages/profileScreen';
+
+import { StackNavigator, } from 'react-navigation';
+
+
+
+const AppNavigation = StackNavigator({
+  Home: { screen:LoginForm },
+  ProfileScreen: { screen: ProfileScreen }
+});
+
 
 
 export default class App extends Component {
   render() {
     return (
-        <LoginForm />
+        <AppNavigation />
     );
   }
 }
@@ -41,3 +52,4 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
