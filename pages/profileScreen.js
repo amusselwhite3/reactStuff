@@ -9,41 +9,39 @@ import {
 
 
 export default class ProfileScreen extends React.Component {
+    static networkData = {
+        tile:"PLACEHOLDER TEEEEEXT"
+    };
+    constructor() {
+        super();
+        this.state = {
+            data: []
+        }
+        this.getData();
+    }
     static navigationOptions = {
       title: 'Welcome',
     };
+
+    async getData() {
+        try {
+            let response = await fetch('https://jsonplaceholder.typicode.com/posts');
+            let responseJson = await response.json();
+            networkData = responseJson;
+            console.log(networkData)
+            this.setState({data:networkData});
+        } catch (error) {
+            console.log(error);
+        }
+    }
     render() {
       const { navigate } = this.props.navigation;
       return (
         <View style = {styles.container}>
+            <Text> {this.networkData} </Text>
             <FlatList
-                data={[
-                    {key: 'Devin'},
-                    {key: 'Jackson'},
-                    {key: 'James'},
-                    {key: 'Joel'},
-                    {key: 'John'},
-                    {key: 'Jillian'},
-                    {key: 'Jimmy'},
-                    {key: 'Julie'}, 
-                    {key: 'evin'},
-                    {key: 'ackson'},
-                    {key: 'ames'},
-                    {key: 'oel'},
-                    {key: 'ohn'},
-                    {key: 'illian'},
-                    {key: 'immy'},
-                    {key: 'ulie'}, 
-                    {key: 'vin'},
-                    {key: 'ckson'},
-                    {key: 'mes'},
-                    {key: 'el'},
-                    {key: 'hn'},
-                    {key: 'llian'},
-                    {key: 'mmy'},
-                    {key: 'lie'},
-                  ]}
-                  renderItem = {({item}) => <Text style={styles.item}>{item.key}</Text>}
+                data={this.state.data}
+                renderItem = {({item}) => (<Text> {item.title} </Text>)}
             />
         </View>       
       );

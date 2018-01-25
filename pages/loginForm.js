@@ -15,7 +15,6 @@ export default class LoginForm extends Component {
 		Alert.alert("FORGOT PASS")
 	}
 	onValueChange() {
-		console.log("THIS IS CHANGING");
 		this.setState(previousState => {
 			return {aThing: !previousState.aThing};
 		});
