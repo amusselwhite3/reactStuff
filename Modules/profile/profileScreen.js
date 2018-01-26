@@ -30,17 +30,6 @@ class ProfileScreen extends React.Component {
     componentDidMount(){
         this.props.getData();
     }
-    // async getData() {
-    //     try {
-    //         let response = await fetch('https://jsonplaceholder.typicode.com/posts');
-    //         let responseJson = await response.json();
-    //         networkData = responseJson;
-    //         console.log(networkData)
-    //         this.setState({data:networkData});
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
     render() {
       console.log(this.state);
       const { navigate } = this.props.navigation;
