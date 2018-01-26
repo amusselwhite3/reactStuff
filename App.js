@@ -12,8 +12,13 @@ import {
   View,
   TextInput
 } from 'react-native';
-import LoginForm from './pages/loginForm';
-import ProfileScreen from './pages/profileScreen';
+import LoginForm from './Modules/loginForm';
+import ProfileScreen from './Modules/profile/profileScreen';
+
+
+import { connect, Provider } from 'react-redux';
+
+import store from './Modules/profile/store';
 
 import { StackNavigator, } from 'react-navigation';
 
@@ -29,7 +34,10 @@ const AppNavigation = StackNavigator({
 export default class App extends Component {
   render() {
     return (
+      <Provider store = {store}>
         <AppNavigation />
+      </Provider>    
+
     );
   }
 }
