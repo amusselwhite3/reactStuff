@@ -39,6 +39,8 @@ class ProfileScreen extends React.Component {
                 <FlatList
                     data={this.props.data}
                     renderItem = {({item}) => (<Text> {item.title} </Text>)}
+                    keyExtractor={(item, index) => index}
+
                 />
             </View>   
       );
@@ -46,8 +48,6 @@ class ProfileScreen extends React.Component {
   }
 
   function mapStateToProps(state, props) {
-      console.log("MAPING");
-      console.log(state);
       return {
           loading:state.dataReducer.loading,
           data:state.dataReducer.data
