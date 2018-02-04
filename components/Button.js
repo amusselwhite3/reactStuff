@@ -7,7 +7,7 @@ export default class Button extends Component {
             <TouchableHighlight
             style={styles.buttonContainer}
             onPress={this.props.onPress}> 
-                <Text>{this.props.text}</Text>
+                <Text style={styles.buttonText}>{this.props.text}</Text>
             </TouchableHighlight>
         )
     }
@@ -17,5 +17,9 @@ const styles = StyleSheet.create({
     buttonContainer: {
         margin: 20,
         flexDirection: 'column',
+    },
+    buttonText:{
+        fontSize: 18,
+        color: '#cccccc'
     }
 })

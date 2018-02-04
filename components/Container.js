@@ -14,10 +14,11 @@ export default class Container extends Component {
 const styles = StyleSheet.create({
 	container: {
 		marginBottom: 20,
-		borderWidth: 4,
 		flexDirection: 'row', 
 		margin:20,
 		justifyContent: 'center',
 		alignItems: 'center',
+		borderBottomWidth:2,
+		borderBottomColor: '#FFFFFF'
 	}
 })

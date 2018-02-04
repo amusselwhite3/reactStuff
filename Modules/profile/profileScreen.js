@@ -4,6 +4,7 @@ import {
      AppRegistry, 
      FlatList, 
      View,
+     Image,
      StyleSheet
 } from 'react-native';
 
@@ -24,23 +25,30 @@ class ProfileScreen extends React.Component {
         }
     }
     static navigationOptions = {
-      title: 'Welcome',
+      title: 'Transaction List',     
+      headerTintColor: '#ffffff',
+      headerStyle:{backgroundColor:'#000080'}
     };
 
     componentDidMount(){
         this.props.getData();
     }
     render() {
-      console.log(this.state);
       const { navigate } = this.props.navigation;
       return (
             <View style = {styles.container}>
-                <Text> {this.networkData} </Text>
                 <FlatList
                     data={this.props.data}
-                    renderItem = {({item}) => (<Text> {item.title} </Text>)}
+                    ItemSeparatorComponent={ () => <View style={ { height: 1 , backgroundColor:'grey'} } /> }
+                    renderItem = {({item}) => (
+                            <View style = {styles.listItem}>
+                                <Image source={require('../../avatar.png')} style={styles.listImage} />
+                                <Text style = {styles.titleText}> {item.title} </Text>
+                                <Text style = {styles.priceValue}> {item.data} </Text>
+                            </View>
+                        )
+                    }
                     keyExtractor={(item, index) => index}
-
                 />
             </View>   
       );
@@ -63,10 +71,28 @@ class ProfileScreen extends React.Component {
   const styles = StyleSheet.create({
       container: {
           flex: 1,
-          padding:20
+          flexDirection: 'row',
       },
       item: {
           padding: 10,
+      },
+      priceValue: {
+          textAlign:'right',
+          color: '#ffffff',
+          flex:1
+      },
+      titleText: {
+          color:'#ffffff',
+      },
+      listImage: {
+		width:50,
+		height:50,
+      },
+      listItem: {
+          padding: 10,
+          flex: .5,
+          backgroundColor: '#00f',
+          flexDirection:'row'
       }
   })
 

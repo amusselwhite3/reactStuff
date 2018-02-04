@@ -10,6 +10,14 @@ export default class LoginForm extends Component {
 		this.onValueChange = this.onValueChange.bind(this);
 	}
 
+	static navigationOptions = {
+		title: 'Welcome',     
+		headerTintColor: '#ffffff',
+		headerStyle:{backgroundColor:'#000080'},
+		footerStyle:{backgroundColor:'#000080'}
+	  };
+  
+
 	  
 	forgotPress() {
 		Alert.alert("FORGOT PASS")
@@ -22,23 +30,24 @@ export default class LoginForm extends Component {
   	render() {
 		const { navigate } = this.props.navigation;
     	return (
-        	<View>
+        	<View style = {{backgroundColor:'#1f1fb0', height: '100%'}}>
 				<Image source={require('./../diamond.jpg')} style={styles.mainIcon} />
-				<Text style={styles.titleText}> Hello! </Text>
+				<Text style={styles.titleText}> Hello </Text>
           		<Container>
 					<View style={{flex:4}}>
 						<TextInput style = {styles.input}
-							placeholder="Email" />
+							placeholder="ENTER PERSONAL ID"
+							placeholderTextColor="#FFFFFF" />
 					</View>
 					<View style={styles.buttonContainer}>
-						<Button
+						<Button 
 							onPress={() => navigate('ProfileScreen')}
 							text = "->"
 						/>
 					</View>
 				</Container>
 				<View style={styles.toggleContainer}>
-					<Text> Remember Me </Text>
+					<Text style={styles.rememberMeText}> Remember Me </Text>
 					<Switch
 						value = {this.state.aThing}
 						onValueChange = {this.onValueChange}
@@ -59,26 +68,32 @@ export default class LoginForm extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-    	borderWidth: 4,
+		
 	},
 	  
 	titleText: {
+		color:'#FFFFFF',
 		alignSelf:'center',
 		flexDirection: 'column',
 		margin:5,
+		fontSize: 20
+	},
+	rememberMeText: {
+		margin:5,
+		fontSize: 16,
+		color:'#FFFFFF'
 	},
 	mainIcon: {
-		width:150,
-		height:150,
-		marginTop: 100,
+		width:100,
+		height:100,
+		marginTop: 60,
 		flexDirection: 'column',
 		alignSelf:'center',
 		margin:20
 	},
-
 	buttonContainer: {
 		flexDirection: 'column',
-		backgroundColor: '#00C01E',
+		backgroundColor: '#ffffff',
 		flex:1
 	},
 	toggleContainer: {
@@ -89,14 +104,14 @@ const styles = StyleSheet.create({
 
 	},
 	forgotContainer: {
-		margin:20,
-		alignSelf:'flex-end'
+		margin:40,
+		alignSelf: 'center'
 	},
 	input: {
+		textAlign: 'center',
 		height: 40,
-		marginBottom: 10,
 		padding: 8,
-		color: '#000'
+		color: '#ffffff'
 	}
 })
 

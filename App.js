@@ -31,6 +31,7 @@ const AppNavigation = StackNavigator({
 
 
 
+
 export default class App extends Component {
   render() {
     return (
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#1f1fb0',
   },
   welcome: {
     fontSize: 20,
