@@ -14,7 +14,9 @@ import {
 } from 'react-native';
 import LoginForm from './Modules/loginForm';
 import ProfileScreen from './Modules/profile/profileScreen';
+import ChartView from './Modules/chartsPage/chartView';
 
+const TestView = require('./Modules/nativeIosPage/TestView.ios.js');
 
 import { connect, Provider } from 'react-redux';
 
@@ -26,7 +28,9 @@ import { StackNavigator, } from 'react-navigation';
 
 const AppNavigation = StackNavigator({
   Home: { screen:LoginForm },
-  ProfileScreen: { screen: ProfileScreen }
+  ProfileScreen: { screen: ProfileScreen },
+  TestView: {screen: TestView},
+  ChartView: {screen: ChartView}
 });
 
 

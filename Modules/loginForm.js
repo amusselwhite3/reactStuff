@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Alert, AppRegistry, View, Text, TextInput, StyleSheet, Image, Switch, setState } from 'react-native';
 import Container from './../components/Container'
 import Button from './../components/Button'
+import TestView from './nativeIosPage/TestView';
 
 export default class LoginForm extends Component {
 	constructor() {
@@ -20,7 +21,7 @@ export default class LoginForm extends Component {
 
 	  
 	forgotPress() {
-		Alert.alert("FORGOT PASS")
+		navigate('ProfileScreen');
 	}
 	onValueChange() {
 		this.setState(previousState => {
@@ -56,9 +57,14 @@ export default class LoginForm extends Component {
 				</View>
 				<View style={styles.forgotContainer}>
 					<Button
-						onPress = {this.forgotPress}
-						text = "Forgot Username/Password"
+						onPress = {() => navigate('TestView')}
+						text = "Open Native iOS page"
 						onValueChange = {this.onValueChange}
+					/>
+
+					<Button 
+						onPress = {() => navigate('ChartView')}
+						text = "Open Chart View"
 					/>
 				</View>
         	</View>
