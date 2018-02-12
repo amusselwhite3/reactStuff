@@ -9,11 +9,11 @@ import {
     ScrollView,
     StyleSheet
 } from 'react-native';
-import Button from './../../components/Button';
 
 
 import { bindActionCreators } from 'redux';
 import { connect, Provider } from 'react-redux';
+import Button from './../../components/Button';
 
 import store from './../profile/store';
 import * as Actions from './../profile/actions';
@@ -33,7 +33,7 @@ var chartData = [
 
 ]
 
-class ChartView extends React.Component {
+class ChartView4 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -80,23 +80,20 @@ class ChartView extends React.Component {
         const { navigate } = this.props.navigation;
 
         return ( 
-
-            <ScrollView contentContainerStyle={styles.container} scrollEnabled={this.state.scrollEnabled}>
-                    <VictoryChart
-                        containerComponent={
-                            <VictoryZoomContainer
-                            onTouchStart={() => this.changeScroll(false)}
-                            onTouchEnd={() => this.changeScroll(true)}
-                            />
-                        }
+            <ScrollView contentContainerStyle={styles.container}>
+                <VictoryChart>
+                    <VictoryScatter 
+                            labelComponent={<VictoryTooltip/>}
+                            data={this.state.data}
+                            size={13}>
+                    </VictoryScatter>
+                    <VictoryLine
+                        data={this.state.data}
+                        labels={() => ''}
+                        labelComponent={<VictoryTooltip/>}
                         >
-                        <VictoryBar/>
-                    </VictoryChart>
-                    <Button
-						onPress = {() => navigate('ChartView2')}
-						text = "Open Next Chart"
-						onValueChange = {this.onValueChange}
-					/>
+                    </VictoryLine>
+                </VictoryChart>
             </ScrollView>
          );
     }
@@ -116,9 +113,9 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChartView);
+export default connect(mapStateToProps, mapDispatchToProps)(ChartView4);
 
-AppRegistry.registerComponent('ChartView', () => ChartView);
+AppRegistry.registerComponent('ChartView4', () => ChartView4);
 const styles = StyleSheet.create({
     container: {
       alignItems: "center",

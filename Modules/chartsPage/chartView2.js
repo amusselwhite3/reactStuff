@@ -9,11 +9,12 @@ import {
     ScrollView,
     StyleSheet
 } from 'react-native';
-import Button from './../../components/Button';
 
 
 import { bindActionCreators } from 'redux';
 import { connect, Provider } from 'react-redux';
+import Button from './../../components/Button';
+
 
 import store from './../profile/store';
 import * as Actions from './../profile/actions';
@@ -33,7 +34,7 @@ var chartData = [
 
 ]
 
-class ChartView extends React.Component {
+class ChartView2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -80,24 +81,29 @@ class ChartView extends React.Component {
         const { navigate } = this.props.navigation;
 
         return ( 
-
-            <ScrollView contentContainerStyle={styles.container} scrollEnabled={this.state.scrollEnabled}>
-                    <VictoryChart
-                        containerComponent={
-                            <VictoryZoomContainer
-                            onTouchStart={() => this.changeScroll(false)}
-                            onTouchEnd={() => this.changeScroll(true)}
-                            />
+            <ScrollView contentContainerStyle={styles.container}>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
+                    <VictoryChart 
+                        height={400} width={600}
+                        domain={{y:[0,200], x:[0,10]}}  
+                    >
+                        <VictoryScatter
+                        data={this.state.data}
+                        style={{data: {
+                            opacity: (d) =>  d.y % 5 === 0 ? 1 : 0.7,
+                            fill: (d) => d.y % 5 === 0 ? "tomato" : "black"
                         }
-                        >
-                        <VictoryBar/>
+                        }}
+                        />                
                     </VictoryChart>
-                    <Button
-						onPress = {() => navigate('ChartView2')}
+                </ScrollView>
+                <Button
+						onPress = {() => navigate('ChartView3')}
 						text = "Open Next Chart"
 						onValueChange = {this.onValueChange}
 					/>
             </ScrollView>
+
          );
     }
 }
@@ -116,9 +122,9 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChartView);
+export default connect(mapStateToProps, mapDispatchToProps)(ChartView2);
 
-AppRegistry.registerComponent('ChartView', () => ChartView);
+AppRegistry.registerComponent('ChartView2', () => ChartView2);
 const styles = StyleSheet.create({
     container: {
       alignItems: "center",

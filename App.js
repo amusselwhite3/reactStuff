@@ -15,6 +15,10 @@ import {
 import LoginForm from './Modules/loginForm';
 import ProfileScreen from './Modules/profile/profileScreen';
 import ChartView from './Modules/chartsPage/chartView';
+import ChartView2 from './Modules/chartsPage/chartView2';
+import ChartView3 from './Modules/chartsPage/chartView3';
+import ChartView4 from './Modules/chartsPage/chartView4';
+
 
 const TestView = require('./Modules/nativeIosPage/TestView.ios.js');
 
@@ -30,8 +34,24 @@ const AppNavigation = StackNavigator({
   Home: { screen:LoginForm },
   ProfileScreen: { screen: ProfileScreen },
   TestView: {screen: TestView},
-  ChartView: {screen: ChartView}
-});
+  ChartView: {screen: ChartView},
+  ChartView2: {screen: ChartView2},
+  ChartView3: {screen: ChartView3},
+  ChartView4: {screen: ChartView4},
+  
+
+}, {transitionConfig});
+
+const transitionConfig = () => {
+  return {
+    transitionSpec: {
+      duration: 750,
+      easing: Easing.out(Easing.poly(4)),
+      timing: Animated.timing,
+      useNativeDriver: true,
+    },
+  }
+}
 
 
 

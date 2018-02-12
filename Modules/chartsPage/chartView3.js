@@ -9,11 +9,12 @@ import {
     ScrollView,
     StyleSheet
 } from 'react-native';
-import Button from './../../components/Button';
 
 
 import { bindActionCreators } from 'redux';
 import { connect, Provider } from 'react-redux';
+
+import Button from './../../components/Button';
 
 import store from './../profile/store';
 import * as Actions from './../profile/actions';
@@ -33,10 +34,11 @@ var chartData = [
 
 ]
 
-class ChartView extends React.Component {
+class ChartView3 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            totalValue: 0,
             data: chartData,
             scrollEnabled:true
         }
@@ -62,6 +64,14 @@ class ChartView extends React.Component {
     changeScroll(scrollEnabled) {
         this.setState({ scrollEnabled });
       }
+
+
+    combineValue(value) {
+        console.log("CALLED");
+        console.log(value);
+        this.state.totalValue = this.state.totalValue + value;
+    }
+
     componentDidMount(){
         if(this.props.data[0]) {
             for (var i = 0; i<6; i++){
@@ -80,20 +90,36 @@ class ChartView extends React.Component {
         const { navigate } = this.props.navigation;
 
         return ( 
-
-            <ScrollView contentContainerStyle={styles.container} scrollEnabled={this.state.scrollEnabled}>
-                    <VictoryChart
-                        containerComponent={
-                            <VictoryZoomContainer
-                            onTouchStart={() => this.changeScroll(false)}
-                            onTouchEnd={() => this.changeScroll(true)}
-                            />
-                        }
-                        >
-                        <VictoryBar/>
-                    </VictoryChart>
-                    <Button
-						onPress = {() => navigate('ChartView2')}
+            <ScrollView contentContainerStyle={styles.container}>
+                    <VictoryPie data = {this.state.data}
+                        events={[
+                            {
+                                target:"data",
+                                eventHandlers:{
+                                    onPressIn: (evt)=> {
+                                        return [
+                                            {
+                                                mutation: (props, evt) => {
+                                                    if (props.style.fill === "green") {
+                                                        return null
+                                                    } else {
+                                                        console.log(props);
+                                                        this.combineValue(evt);
+                                                        return { style: { fill: "green" } };                                                    style: { fill: "green" }
+                                                    }
+                                                }
+                                              }
+                                        ]
+                                    } 
+                                }
+                                    
+                            }
+                        ]}
+                    />
+                    <Text>{this.state.totalValue}
+                    </Text>
+                     <Button
+						onPress = {() => navigate('ChartView4')}
 						text = "Open Next Chart"
 						onValueChange = {this.onValueChange}
 					/>
@@ -101,7 +127,6 @@ class ChartView extends React.Component {
          );
     }
 }
-
 
 
 
@@ -116,9 +141,9 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChartView);
+export default connect(mapStateToProps, mapDispatchToProps)(ChartView3);
 
-AppRegistry.registerComponent('ChartView', () => ChartView);
+AppRegistry.registerComponent('ChartView3', () => ChartView3);
 const styles = StyleSheet.create({
     container: {
       alignItems: "center",
