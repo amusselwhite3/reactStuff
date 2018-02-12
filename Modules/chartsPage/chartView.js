@@ -70,7 +70,9 @@ class ChartView extends React.Component {
 
             }
             console.log(chartData)
-        } 
+        } else {
+                this.props.getData();
+        }
 
         this.setState({
             data: chartData

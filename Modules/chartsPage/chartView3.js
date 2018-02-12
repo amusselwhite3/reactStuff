@@ -67,9 +67,13 @@ class ChartView3 extends React.Component {
 
 
     combineValue(value) {
-        console.log("CALLED");
-        console.log(value);
+        let aVal = this.state.totalValue;
+        aVal += value;
+        this.setState({
+            totalValue:aVal
+        });
         this.state.totalValue = this.state.totalValue + value;
+        
     }
 
     componentDidMount(){
@@ -79,7 +83,6 @@ class ChartView3 extends React.Component {
                 chartData[i].label = this.props.data[i].data
 
             }
-            console.log(chartData)
         } 
 
         this.setState({
@@ -101,10 +104,10 @@ class ChartView3 extends React.Component {
                                             {
                                                 mutation: (props, evt) => {
                                                     if (props.style.fill === "green") {
+                                                        this.combineValue(-parseFloat(props.data[props.index].label));
                                                         return null
                                                     } else {
-                                                        console.log(props);
-                                                        this.combineValue(evt);
+                                                        this.combineValue(parseFloat(props.data[props.index].label));
                                                         return { style: { fill: "green" } };                                                    style: { fill: "green" }
                                                     }
                                                 }
