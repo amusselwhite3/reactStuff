@@ -97,11 +97,13 @@ class ChartView2 extends React.Component {
                         />                
                     </VictoryChart>
                 </ScrollView>
-                <Button
-						onPress = {() => navigate('ChartView3')}
-						text = "Open Next Chart"
-						onValueChange = {this.onValueChange}
-					/>
+                <View accessibilityLabel="chartButton3">
+                    <Button
+                            onPress = {() => navigate('ChartView3')}
+                            text = "Open Next Chart"
+                            onValueChange = {this.onValueChange}
+                        />
+                </View>
             </ScrollView>
 
          );

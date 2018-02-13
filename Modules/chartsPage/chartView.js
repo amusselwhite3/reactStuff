@@ -82,24 +82,25 @@ class ChartView extends React.Component {
         const { navigate } = this.props.navigation;
 
         return ( 
+             <View accessibilityLabel="chartButton6">
+                        <VictoryChart accessibilityLabel="chartButton6"
+                            containerComponent={
+                                <VictoryZoomContainer
+                                onTouchStart={() => this.changeScroll(false)}
+                                onTouchEnd={() => this.changeScroll(true)}
+                                />
+                            }
+                            >
+                            <VictoryBar accessibilityLabel="chartButton6"/>
+                        </VictoryChart>
 
-            <ScrollView contentContainerStyle={styles.container} scrollEnabled={this.state.scrollEnabled}>
-                    <VictoryChart
-                        containerComponent={
-                            <VictoryZoomContainer
-                            onTouchStart={() => this.changeScroll(false)}
-                            onTouchEnd={() => this.changeScroll(true)}
+                        <View style={styles.buttonContainer} accessibilityLabel="chartButton2">
+                            <Button
+                                onPress = {() => {console.log("CHARTVIEW");navigate('ChartView2')}}
+                                text = "Open Next Chart"
                             />
-                        }
-                        >
-                        <VictoryBar/>
-                    </VictoryChart>
-                    <Button
-						onPress = {() => navigate('ChartView2')}
-						text = "Open Next Chart"
-						onValueChange = {this.onValueChange}
-					/>
-            </ScrollView>
+                        </View>
+            </View>
          );
     }
 }
@@ -132,5 +133,10 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
       marginTop: 10,
       marginBottom: 30
+    },
+    buttonContainer:{
+        marginTop: 20,
+        marginBottom: 40,
+        width: 200,
     }
   });

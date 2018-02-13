@@ -52,7 +52,7 @@ export default class LoginForm extends Component {
 							placeholder="ENTER PERSONAL ID"
 							placeholderTextColor="#FFFFFF" />
 					</View>
-					<View style={styles.buttonContainer}>
+					<View style={styles.buttonContainer} accessibilityLabel="profileButton" >
 						<Button
 							onPress={() => navigate('ProfileScreen')}
 							text = "->"
@@ -73,7 +73,9 @@ export default class LoginForm extends Component {
 						text = "Open Native iOS page"
 						onValueChange = {this.onValueChange}
 					/>
-
+				</View>
+				<View style={styles.container}
+				 accessibilityLabel="chartButton" >
 					<Button
 						onPress = {this.onButtonPress}
 						text = "Check for updates"
@@ -92,6 +94,7 @@ export default class LoginForm extends Component {
 
 const styles = StyleSheet.create({
 	container: {
+		alignSelf: 'center'
 
 	},
 
