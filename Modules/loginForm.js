@@ -13,7 +13,7 @@ export default class LoginForm extends Component {
 	}
 
 	componentDidMount() {
-		codePush.sync({updateDialog: true, installMode: codePush.InstallMode.ON_NEXT_RESUME});
+		codePush.sync({updateDialog: false, installMode: codePush.InstallMode.ON_NEXT_RESUME});
 	}
 
 	static navigationOptions = {
