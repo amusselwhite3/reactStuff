@@ -3,6 +3,7 @@ import { Alert, AppRegistry, View, Text, TextInput, StyleSheet, Image, Switch, s
 import Container from './../components/Container'
 import Button from './../components/Button'
 import TestView from './nativeIosPage/TestView';
+import codePush from 'react-native-code-push'
 
 export default class LoginForm extends Component {
 	constructor() {
@@ -11,15 +12,19 @@ export default class LoginForm extends Component {
 		this.onValueChange = this.onValueChange.bind(this);
 	}
 
+	componentDidMount() {
+		codePush.sync({updateDialog: true, installMode: codePush.InstallMode.ON_NEXT_RESUME});
+	}
+
 	static navigationOptions = {
-		title: 'Welcome',     
+		title: 'Welcome',
 		headerTintColor: '#ffffff',
 		headerStyle:{backgroundColor:'#000080'},
 		footerStyle:{backgroundColor:'#000080'}
 	  };
-  
 
-	  
+
+
 	forgotPress() {
 		navigate('ProfileScreen');
 	}
@@ -41,7 +46,7 @@ export default class LoginForm extends Component {
 							placeholderTextColor="#FFFFFF" />
 					</View>
 					<View style={styles.buttonContainer}>
-						<Button 
+						<Button
 							onPress={() => navigate('ProfileScreen')}
 							text = "->"
 						/>
@@ -62,7 +67,7 @@ export default class LoginForm extends Component {
 						onValueChange = {this.onValueChange}
 					/>
 
-					<Button 
+					<Button
 						onPress = {() => navigate('ChartView')}
 						text = "Open Chart View"
 					/>
@@ -74,9 +79,9 @@ export default class LoginForm extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		
+
 	},
-	  
+
 	titleText: {
 		color:'#FFFFFF',
 		alignSelf:'center',
@@ -106,7 +111,7 @@ const styles = StyleSheet.create({
 		margin: 20,
 		flexDirection: 'column',
 		alignSelf: 'center',
-		flexDirection: 'row', 
+		flexDirection: 'row',
 
 	},
 	forgotContainer: {
