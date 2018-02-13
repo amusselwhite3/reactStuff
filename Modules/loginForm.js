@@ -13,8 +13,15 @@ export default class LoginForm extends Component {
 	}
 
 	componentDidMount() {
-		codePush.sync({updateDialog: false, installMode: codePush.InstallMode.ON_NEXT_RESUME});
+		codePush.sync({updateDialog: true, installMode: codePush.InstallMode.IMMEDIATE, checkFrequency: codePush.CheckFrequency.MANUAL});
 	}
+
+	onButtonPress() {
+        codePush.sync({
+            updateDialog: true,
+            installMode: codePush.InstallMode.IMMEDIATE
+        });
+    }
 
 	static navigationOptions = {
 		title: 'Welcome',
@@ -38,7 +45,7 @@ export default class LoginForm extends Component {
     	return (
         	<View style = {{backgroundColor:'#1f1fb0', height: '100%'}}>
 				<Image source={require('./../diamond.jpg')} style={styles.mainIcon} />
-				<Text style={styles.titleText}> Hello </Text>
+				<Text style={styles.titleText}> Hello there</Text>
           		<Container>
 					<View style={{flex:4}}>
 						<TextInput style = {styles.input}
@@ -64,6 +71,12 @@ export default class LoginForm extends Component {
 					<Button
 						onPress = {() => navigate('TestView')}
 						text = "Open Native iOS page"
+						onValueChange = {this.onValueChange}
+					/>
+
+					<Button
+						onPress = {this.onButtonPress}
+						text = "Check for updates"
 						onValueChange = {this.onValueChange}
 					/>
 
