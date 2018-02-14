@@ -72,16 +72,18 @@ export default class LoginForm extends Component {
 						onPress = {() => navigate('TestView')}
 						text = "Open Native iOS page"
 						onValueChange = {this.onValueChange}
+					/>	
+					<Button style={styles.container}
+					onPress = {this.onButtonPress}
+					text = "Check for updates"
+					onValueChange = {this.onValueChange}
 					/>
+					
+
 				</View>
+			
 				<View style={styles.container}
 				 accessibilityLabel="chartButton" >
-					<Button
-						onPress = {this.onButtonPress}
-						text = "Check for updates"
-						onValueChange = {this.onValueChange}
-					/>
-
 					<Button
 						onPress = {() => navigate('ChartView')}
 						text = "Open Chart View"
@@ -131,7 +133,7 @@ const styles = StyleSheet.create({
 
 	},
 	forgotContainer: {
-		margin:40,
+		margin:20,
 		alignSelf: 'center'
 	},
 	input: {
