@@ -1346,7 +1346,7 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = L3PXB36C98;
 				HEADER_SEARCH_PATHS = (
-					/Users/amusse/reactStuff/testProject/ios,
+					/Users/ausmusse/reactStuff/testProject/ios,
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
@@ -1378,7 +1378,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L3PXB36C98;
 				HEADER_SEARCH_PATHS = (
-					/Users/amusse/reactStuff/testProject/ios,
+					/Users/ausmusse/reactStuff/testProject/ios,
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
