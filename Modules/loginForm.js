@@ -4,25 +4,34 @@ import Container from './../components/Container'
 import Button from './../components/Button'
 import TestView from './nativeIosPage/TestView';
 import codePush from 'react-native-code-push'
+/**
+ * First page of the app, contiains a ton of different plugins, 
+ * but basically is several links to other pages, and a login form.
+ * 
+ * JSX at the bottom is the display of the page
+ */
 
 export default class LoginForm extends Component {
+	//Constructer sets initial state of the form and binds onValueChange method to JSX
 	constructor() {
 		super();
-		this.state = {aThing:true};
+		this.state = {onState:true};
 		this.onValueChange = this.onValueChange.bind(this);
 	}
 
+	//Codepush load to grab anything new from central codeupush store. 
 	componentDidMount() {
 		codePush.sync({updateDialog: true, installMode: codePush.InstallMode.IMMEDIATE, checkFrequency: codePush.CheckFrequency.MANUAL});
 	}
-
+	
+	//Codepush load to grab anything new from central codeupush store. 
 	onButtonPress() {
         codePush.sync({
             updateDialog: true,
             installMode: codePush.InstallMode.IMMEDIATE
         });
     }
-
+	//Navication Options Title Styling and page. This is referenced by a plugin, so it is not directly added to the JSX.
 	static navigationOptions = {
 		title: 'Welcome',
 		headerTintColor: '#ffffff',
@@ -30,16 +39,13 @@ export default class LoginForm extends Component {
 		footerStyle:{backgroundColor:'#000080'}
 	  };
 
-
-
-	forgotPress() {
-		navigate('ProfileScreen');
-	}
+	//handles the toggle button inside the JSX
 	onValueChange() {
 		this.setState(previousState => {
-			return {aThing: !previousState.aThing};
+			return {onState: !previousState.onState};
 		});
 	}
+	//Renders the JSX of the page, including all four buttons, and the login form. 
   	render() {
 		const { navigate } = this.props.navigation;
     	return (
@@ -62,7 +68,7 @@ export default class LoginForm extends Component {
 				<View style={styles.toggleContainer}>
 					<Text style={styles.rememberMeText}> Remember Me </Text>
 					<Switch
-						value = {this.state.aThing}
+						value = {this.state.onState}
 						onValueChange = {this.onValueChange}
 						>
 					</Switch>
@@ -93,7 +99,7 @@ export default class LoginForm extends Component {
       );
   }
 }
-
+//Stylesheet for profile page, these are all exclusive to the profile screen.
 const styles = StyleSheet.create({
 	container: {
 		alignSelf: 'center'

@@ -28,8 +28,16 @@ import store from './Modules/profile/store';
 
 import { StackNavigator, } from 'react-navigation';
 
+/**
+ * Main file for the application, contains navigator set up and declarations of all files and pages on the app.
+ * 
+ * Referenced in index.js, work here, not in the index file.
+ */
 
 
+/**
+ * Stack Navigator provided by a plugin, contains all the screens in the app.
+ */
 const AppNavigation = StackNavigator({
   Home: { screen:LoginForm },
   ProfileScreen: { screen: ProfileScreen },
@@ -42,6 +50,7 @@ const AppNavigation = StackNavigator({
 
 }, {transitionConfig});
 
+//Animation transition config file. Changes animations between every page, usNativeDriver attribute makes it animate using iOS animation libraries instead of JS ones.
 const transitionConfig = () => {
   return {
     transitionSpec: {
@@ -55,7 +64,7 @@ const transitionConfig = () => {
 
 
 
-
+//Main app class container, Provider declaration is from Redux plugin that stores data centrally. 
 export default class App extends Component {
   render() {
     return (
@@ -73,16 +82,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#1f1fb0',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
 

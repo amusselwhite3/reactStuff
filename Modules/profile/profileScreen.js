@@ -13,26 +13,33 @@ import { connect, Provider } from 'react-redux';
 
 import store from './store';
 import * as Actions from './actions';
-
+/**
+ * Profile Screen that references data stored in redux and then displays the data as a listview containing a placeholder image.
+ * 
+ * This page was created to compare to a similiar native ios listview
+ */
 class ProfileScreen extends React.Component {
     static networkData = {
-        tile:"PLACEHOLDER TEEEEEXT"
+        tile:"Placeholder Text"
     };
+    //Create page with no daata
     constructor(props) {
         super(props);
         this.state = {
             data: []
         }
     }
+    //Change navigation page title and styling
     static navigationOptions = {
       title: 'Transaction List',     
       headerTintColor: '#ffffff',
       headerStyle:{backgroundColor:'#000080'}
     };
-
+    //Load data from redux once listview is loaded, wait for full rendering so a network request can be completed before attempting to load redux if the network code is active.
     componentDidMount(){
         this.props.getData();
     }
+    //Uses flatlist react native component to create 500 item listview to test scrolling.
     render() {
       const { navigate } = this.props.navigation;
       return (
@@ -54,7 +61,7 @@ class ProfileScreen extends React.Component {
       );
     }
   }
-
+  //Required Methods for Redux Plugin
   function mapStateToProps(state, props) {
       return {
           loading:state.dataReducer.loading,

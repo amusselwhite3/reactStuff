@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableHighlight } from 'react-native';
 
+/**
+ * Button Component, can be inserted into any form and then built upon.
+ * 
+ * Styles can be overwritten in main page
+ */
+
 export default class Button extends Component {
     render() {
         return (

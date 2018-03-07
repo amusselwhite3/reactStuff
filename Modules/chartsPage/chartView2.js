@@ -33,8 +33,14 @@ var chartData = [
     {x:6, y:55,label: "Test"},
 
 ]
-
+/**
+ * Chartview Class, this was split into four seperate pages and components to improve performance
+ * 
+ * This chart contains a scatter chart with a horizontal scroll
+ * These four charts all created using the data stored in redux once it loads.
+ */
 class ChartView2 extends React.Component {
+    //Gets current state and loads chartData from redux (props item references redux store.)
     constructor(props) {
         super(props);
         this.state = {
@@ -51,18 +57,8 @@ class ChartView2 extends React.Component {
         } 
 
     }
+    //Gets current state and loads chartData from redux (props item references redux store.(Back button)
 
-
-    handleZoom(domain) {
-        this.setState({selectedDomain:domain});
-    }
-    handleBrush(domain) {
-        this.setState({zoomDomain:domain});
-    }
-
-    changeScroll(scrollEnabled) {
-        this.setState({ scrollEnabled });
-      }
     componentDidMount(){
         if(this.props.data[0]) {
             for (var i = 0; i<6; i++){
@@ -77,6 +73,7 @@ class ChartView2 extends React.Component {
             data: chartData
           });
     }
+    //Render scatter plot with certain data points colored based on data
     render(){   
         const { navigate } = this.props.navigation;
 
@@ -112,7 +109,7 @@ class ChartView2 extends React.Component {
 
 
 
-
+//Required Methods for Redux Plugin
 function mapStateToProps(state, props) {
     return {
         loading:state.dataReducer.loading,

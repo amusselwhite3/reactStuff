@@ -33,7 +33,14 @@ var chartData = [
 
 ]
 
+/**
+ * Chartview Class, this was split into four seperate pages and components to improve performance
+ * 
+ * This chart contains a line graph that opens tooltips when each data point is selected
+ * These four charts all created using the data stored in redux once it loads.
+ */
 class ChartView4 extends React.Component {
+    //Gets current state and loads chartData from redux (props item references redux store.)
     constructor(props) {
         super(props);
         this.state = {
@@ -50,18 +57,7 @@ class ChartView4 extends React.Component {
         } 
 
     }
-
-
-    handleZoom(domain) {
-        this.setState({selectedDomain:domain});
-    }
-    handleBrush(domain) {
-        this.setState({zoomDomain:domain});
-    }
-
-    changeScroll(scrollEnabled) {
-        this.setState({ scrollEnabled });
-      }
+    //Gets current state and loads chartData from redux (props item references redux store.(Back button)/ May be unneeded as this is the last page of the four. 
     componentDidMount(){
         if(this.props.data[0]) {
             for (var i = 0; i<6; i++){
@@ -76,6 +72,7 @@ class ChartView4 extends React.Component {
             data: chartData
           });
     }
+    //Renders graphs and uses built in Victory tooltips to display available data.
     render(){   
         const { navigate } = this.props.navigation;
 
@@ -101,7 +98,7 @@ class ChartView4 extends React.Component {
 
 
 
-
+//Required Methods for Redux Plugin
 function mapStateToProps(state, props) {
     return {
         loading:state.dataReducer.loading,

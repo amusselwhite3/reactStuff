@@ -33,8 +33,14 @@ var chartData = [
     {x:6, y:55,label: "Test"},
 
 ]
-
+/**
+ * Chartview Class, this was split into four seperate pages and components to improve performance
+ * 
+ * This chart contains a pie chart that changes colors when pie pieces are clicked on
+ * These four charts all created using the data stored in redux once it loads.
+ */
 class ChartView3 extends React.Component {
+    //Gets current state and loads chartData from redux (props item references redux store.)
     constructor(props) {
         super(props);
         this.state = {
@@ -52,20 +58,7 @@ class ChartView3 extends React.Component {
         } 
 
     }
-
-
-    handleZoom(domain) {
-        this.setState({selectedDomain:domain});
-    }
-    handleBrush(domain) {
-        this.setState({zoomDomain:domain});
-    }
-
-    changeScroll(scrollEnabled) {
-        this.setState({ scrollEnabled });
-      }
-
-
+    //Combines values of selected pie pieces and displays them on the bottom.
     combineValue(value) {
         let aVal = this.state.totalValue;
         aVal += value;
@@ -75,7 +68,7 @@ class ChartView3 extends React.Component {
         this.state.totalValue = this.state.totalValue + value;
         
     }
-
+    //Gets current state and loads chartData from redux (props item references redux store.(Back button)
     componentDidMount(){
         if(this.props.data[0]) {
             for (var i = 0; i<6; i++){
@@ -89,6 +82,7 @@ class ChartView3 extends React.Component {
             data: chartData
           });
     }
+    //Render pie pieces, and calls the mutation methods using an event handler when a Pie Piece is selected 
     render(){   
         const { navigate } = this.props.navigation;
 
@@ -135,7 +129,7 @@ class ChartView3 extends React.Component {
 }
 
 
-
+//Required Methods for Redux Plugin
 function mapStateToProps(state, props) {
     return {
         loading:state.dataReducer.loading,
